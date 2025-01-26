@@ -30,16 +30,15 @@ function insertFrameToSceneList(allNodes, frameNode, parentId, beforeFrameId) {
   toSceneFrameNodes.sort((a, b) => a.position.x - b.position.x); // sort by position.x in ascending order
 
   if (! beforeFrameId) {
-    const lastFrameNode = toSceneFrameNodes[toSceneFrameNodes.length - 1];
+    // at the end of the scene
     frameNode.position.x = toSceneFrameNodes.length * frameNodeNextXPosDistance + sceneListPadding;
     frameNode.position.y = frameNodeYPos;
   }
   else {
-    // then insert frameNode and update it and subsequent positions
+    // insert frameNode before hovered frame and update it and subsequent positions
     const insertIdx = toSceneFrameNodes.findIndex(f => f.id == beforeFrameId);
     frameNode.position.x = (insertIdx + 1) * frameNodeNextXPosDistance + sceneListPadding;
     frameNode.position.y = frameNodeYPos;
-    let newXPos = 0;
 
     for (let i=insertIdx; i<toSceneFrameNodes.length-1; i++) {
       allNodeIndicesDict[ toSceneFrameNodes[i].id ].position.x = (i + 1) * frameNodeNextXPosDistance + sceneListPadding;
@@ -141,6 +140,7 @@ export const flow = createSlice({
       const sceneNodes = allNodes.filter(n => n.parentId == fromParentId);
       sceneNodes.sort((a, b) => a.position.x - b.position.x); // // sort by position.x in ascending order
 
+      // update horizontal positions
       for (let i=0; i<sceneNodes.length; i++) {
         sceneNodes[i].position.x = i * frameNodeNextXPosDistance + sceneListPadding;
       }
@@ -170,15 +170,18 @@ export const flow = createSlice({
       // I thought beforeFrameId may need to be considered when inserting, but that doesn't seem to be the case.
       // I also thought there could be a problem of order placement with the relative position.x to the fromParentId.
 
+      // update horizontal positions
       for (let i=0; i<toSceneNodes.length; i++) {
         toSceneNodes[i].position.x = i * frameNodeNextXPosDistance + sceneListPadding;
       }
 
       if (! isMovingScenes) { return; }
 
+      // clean up the frame positions in the old scene list
       const fromSceneNodes = state.nodes.filter(n => n.parentId == fromParentId);
       fromSceneNodes.sort((a, b) => a.position.x - b.position.x); // sort by position.x in ascending order
 
+      // update horizontal positions
       for (let i=0; i<fromSceneNodes.length; i++) {
         fromSceneNodes[i].position.x = i * frameNodeNextXPosDistance + sceneListPadding;
       }

@@ -20,6 +20,7 @@ const SceneList = ({ id, data }) => {
         frameNodes.sort((a, b) => a.position.x - b.position.x); // sort by position.x in ascending order
         return frameNodes;
     }
+    
     const frameNodes = useMemo(() => {
         return getOrderedFrameNodes(nodes, id);
     }, [nodes, id]);

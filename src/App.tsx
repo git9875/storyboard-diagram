@@ -99,7 +99,6 @@ const NestedFlow = () => {
         if (dragItemTypeLocal == sidebarFrameStr) {
           if (nodesInMouseArea.length == 1 && nodesInMouseArea[0].type == sceneListStr) {
             const newFrameNode = makeNewFrameNode(nodesInMouseArea[0].id, null, null);
-            // console.log("onDrop before insert a", newFrameNode);
             dispatch(addFrameToScene(newFrameNode));
           }
           else {
@@ -166,6 +165,7 @@ const NestedFlow = () => {
     const nodeHtmlBounds = getNodeHtmlBounds();
     const nodesInMouseArea = getNodesByEventClientPosition(e, nodeHtmlBounds);
 
+    // don't allow scene list to drop onto another scene list
     if (node.type == sceneListStr) {
       if (doesSceneToucheOtherScene(e, node)) {
         dispatch(updateNodePosition(dragNode)); // reset scene list position
@@ -175,6 +175,7 @@ const NestedFlow = () => {
       }
     }
 
+    // don't allow a frame to be dropped on an empty area, must drop on a scene list
     if (nodesInMouseArea.length < 2 && dragFrameNode && nodesInMouseArea[1] == dragFrameNode.id) {
       if (dragItemTypeLocal == frameNodeStr) {
         dispatch(updateNodePosition(dragFrameNode)); // reset frame position
@@ -186,26 +187,32 @@ const NestedFlow = () => {
     else {
       const sceneListCount = nodesInMouseArea.reduce((count, node) => {return node.type == sceneListStr ? count+1 : count; }, 0);
 
+      // don't allow scene list to drop onto another scene list
       if (dragItemTypeLocal == sceneListStr && sceneListCount > 1) {
         dispatch(updateNodePosition(dragNode)); // reset scene list position
         dragNode = null;
         alert("Don't drag scene lists on top of each other!");
         return;
       }
+      // flowSlice onNodesChange() updates the nodes positions; the scene list new position is already handled there (last drag position)
 
+      // moving a frame node
       if (dragItemTypeLocal == frameNodeStr && dragFrameNode) { // move position
         const foundFrameNode = nodesInMouseArea.find((n) => n.type == frameNodeStr && n.id != dragFrameNode.id);
 
+        // insert frame before other frame (foundFrameNode)
         if (foundFrameNode) {
           dispatch(moveFrame({beforeFrameId:foundFrameNode.id, frameNode:dragFrameNode, toParentId:foundFrameNode.parentId}));
         }
         else {
+          // don't allow a frame to be dropped on an empty area, must drop on a scene list
           if (sceneListCount == 0) {
             alert("Must drop frame onto a scene.");
             dispatch(updateNodePosition(dragFrameNode)); // reset frame position
             return;
           }
 
+          // append frame to the end of a scene list
           const foundSceneNode = nodesInMouseArea.findLast((n) => n.type == sceneListStr);
           dispatch(moveFrame({beforeFrameId:'', frameNode:dragFrameNode, toParentId:foundSceneNode.id}));
         }

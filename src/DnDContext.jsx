@@ -1,3 +1,4 @@
+// Drag and Drop Context Provider used to handle dragging nodes
 import { createContext, useContext, useState } from 'react';
  
 const DnDContext = createContext([null, (_) => {}]);

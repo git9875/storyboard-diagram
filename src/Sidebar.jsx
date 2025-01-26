@@ -11,6 +11,12 @@ export default (props) => {
   const imageUrlInputRef = useRef(null);
 
 
+  const onDragStart = (event, nodeType) => {
+    setDragItemType(nodeType);
+    event.dataTransfer.effectAllowed = 'move';
+  };
+
+  
   useEffect(() => {
     if (nameInputRef.current) {
       nameInputRef.current.value = props.editnode?.data.label || "";
@@ -18,20 +24,7 @@ export default (props) => {
     if (imageUrlInputRef.current) {
       imageUrlInputRef.current.value = props.editnode?.data.image.url || "";
     }
-  }, [
-    props.editnode
-  ]);
-
-
-  const onDragStart = (event, nodeType) => {
-    setDragItemType(nodeType);
-    event.dataTransfer.effectAllowed = 'move';
-  };
-
-  const nameChange = (e) => {
-  };
-  const imageUrlChange = (e) => {
-  };
+  }, [ props.editnode ]);
 
   const updateNode = () => {
     if (nameInputRef.current.value != props.editnode.data.label) {
@@ -44,6 +37,10 @@ export default (props) => {
     props.closeMe();
   };
  
+  const nameChange = (e) => { };
+  const imageUrlChange = (e) => { };
+
+
   return (
     <aside>
       <div className="description">You can drag these nodes to the pane on the right.</div>
