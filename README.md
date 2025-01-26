@@ -7,18 +7,20 @@ that typically run one after the other (represented as a horizontal list). Howev
 connect frames together when there are choices to be made by the user and it will then jump
 to a different scene. It can be like a choose-your-own-adventure game.
 
-It was a challenge to align the frame nodes in a horizontal list and be able to
-rearrange them by dragging them over. React Flow was built to position nodes in absolute positions.
-React Flow works with other [layouts](https://reactflow.dev/examples/layout/horizontal),
+It was a challenge to make the frame nodes automatically align in a horizontal list after drag-and-dropping
+(DnD) the nodes onto a scene list, especially when positioning them before other frame nodes in a
+sequence. React Flow was built to position nodes in absolute positions. Normally, nodes do not
+automatically align themselves, but React Flow works with other
+[layouts](https://reactflow.dev/examples/layout/horizontal) to do other kinds of alignment,
 but those don't work the way I want.
 
-Before this one, I created two other projects that didn't
-work out. Both of them had a horizontal scrolling overflow list. I wanted to be able to limit the
+Before this project, I created two other projects that didn't work out.
+Both of them had an HTML horizontal scrolling overflow lists. I wanted to be able to set the maximum
 width of the scene lists and allow the user to just scroll through the list. It didn't work out
-because the positioning of handles and edges by React Flow got weird when I used that kind of
+because the positioning of handles and edges by React Flow always got weird when I used that kind of
 layout and style. When I tried to connect nodes together with edges, it would connect to the
-wrong node and there was no way to fix it. So, with this project, I just expand the scene list
-when more frames are added.
+wrong node and there was no way to fix it (bangs head on keyboard). So, with this project, I just
+expand the scene list when more frames are added.
 
 ### Example using stills from the movie The Birds (1963)
 [![Storyboard scenes node diagram of movie The Birds](storyboard_thebirds.png)](https://vintillect.com/storyboard/)
@@ -32,7 +34,10 @@ React Flow has a helpful [Vite React Flow Template](https://reactflow.dev/learn)
 npx degit xyflow/vite-react-flow-template your-app-name
 ```
 
-Instead of relying upon React's built in state manager and Redux, I decided to use [Redux Toolkit](https://redux-toolkit.js.org/) which has [Immer built in](https://redux-toolkit.js.org/usage/immer-reducers). This allowed me to make my reducers much more simplified as it appears that it mutates the state.
+Instead of relying upon React's built in state manager and Redux, I decided to use
+[Redux Toolkit](https://redux-toolkit.js.org/) which has [Immer built in](https://redux-toolkit.js.org/usage/immer-reducers).
+This allowed me to make my reducers much more simplified as it appears that it mutates the state. Yes!
+
 In my opinion, "reducer" is a horrible, misleading name for these kinds of functions. They don't reduce anything.
 
 ```bash
@@ -42,4 +47,9 @@ npm install @reduxjs/toolkit
 
 ## React Flow Groups / Sub Flows
 
-I didn't use their React Flow's Pro Plan (though I intend to do so in the future to support their awesome work), but I created my own [dynamic grouping](https://reactflow.dev/examples/nodes/dynamic-grouping) of nodes.
+The **other challenge** that I had with this project was implementing dynamic grouping. I can DnD a frame node
+from one scene list (group) to another. The problem is that
+[dynamic grouping](https://reactflow.dev/examples/nodes/dynamic-grouping) requires a
+React Flow Pro Plan and I'm not quite ready for that yet.
+So, I implemented my own way of dynamically grouping them. I fully intend to support them in the
+future for their awesome work.
