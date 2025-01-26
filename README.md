@@ -32,7 +32,7 @@ React Flow has a helpful [Vite React Flow Template](https://reactflow.dev/learn)
 npx degit xyflow/vite-react-flow-template your-app-name
 ```
 
-Instead of relying upon React's built in state manager and Redux, I decided to use [Redux Toolkit](https://redux-toolkit.js.org/) which as [Immer built in](https://redux-toolkit.js.org/usage/immer-reducers). This allowed me to make my reducers much more simplified as it appears that it mutates the state.
+Instead of relying upon React's built in state manager and Redux, I decided to use [Redux Toolkit](https://redux-toolkit.js.org/) which has [Immer built in](https://redux-toolkit.js.org/usage/immer-reducers). This allowed me to make my reducers much more simplified as it appears that it mutates the state.
 In my opinion, "reducer" is a horrible, misleading name for these kinds of functions. They don't reduce anything.
 
 ```bash
@@ -40,6 +40,6 @@ npm install @reduxjs/toolkit
 ```
 
 
-## Groups / Sub Flows
+## React Flow Groups / Sub Flows
 
-I didn't use their Pro Plan (though I intend to do so in the future to support their awesome work), but I created my own [dynamic grouping](https://reactflow.dev/examples/nodes/dynamic-grouping) of nodes.
+I didn't use their React Flow's Pro Plan (though I intend to do so in the future to support their awesome work), but I created my own [dynamic grouping](https://reactflow.dev/examples/nodes/dynamic-grouping) of nodes.
