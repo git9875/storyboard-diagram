@@ -1,0 +1,191 @@
+@import url('./xy-theme.css');
+ 
+html,
+body {
+  margin: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+ 
+#app {
+  width: 100vw;
+  height: 100vh;
+}
+
+.react-flow .react-flow__handle { z-index:1001; }
+.react-flow .react-flow__edge path { stroke-dasharray:2px; }
+
+
+.dndflow {
+  flex-direction: column;
+  display: flex;
+  flex-grow: 1;
+  height: 100vh;
+}
+ 
+.dndflow aside {
+  border-right: 1px solid #eee;
+  padding: 15px 10px;
+  font-size: 12px;
+  background: #fcfcfc;
+}
+ 
+.dndflow aside .description {
+  margin-bottom: 10px;
+}
+ 
+.dndflow .dndnode {
+  height: 20px;
+  padding: 4px;
+  border: 1px solid #1a192b;
+  border-radius: 2px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+}
+ 
+.dndflow .dndnode.input {
+  border-color: #0041d0;
+}
+ 
+.dndflow .dndnode.output {
+  border-color: #ff0072;
+}
+ 
+.dndflow .reactflow-wrapper {
+  flex-grow: 1;
+  height: 100%;
+}
+ 
+.dndflow .selectall {
+  margin-top: 10px;
+}
+ 
+@media screen and (min-width: 768px) {
+  .dndflow {
+    flex-direction: row;
+  }
+ 
+  .dndflow aside {
+    width: 20%;
+    max-width: 250px;
+  }
+}
+
+.react-flow__node.highlight {
+  background-color: #e0dff0;
+  color: white;
+}
+
+.scene-list-node {
+  width: 100%;
+  height:140px;
+  margin-bottom: -5px;
+  display: block;
+}
+.scene-list-name {
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: -11px;
+}
+.scene-list {
+  max-height:75px;
+  min-height: 75px;
+  height: 75px;
+  padding: 0;
+  margin: 0;
+  z-index:2;
+  text-align: left;
+}
+.frame-wrapper {
+  display: inline-block;
+  position: relative;
+  margin: 5px;
+  background-color: white;
+  color:black;
+}
+.frame-wrapper.highlight {
+  background-color: #afacd6;
+  color:white;
+}
+.node-icons {
+  margin-top: -0.4rem;
+  height: 0.7rem;
+  font-size: 0.5rem;
+}
+.scene-list .node-icons {
+  width: 100px;
+  position: absolute;
+  right: 6px;
+  margin-top: -1.0rem;
+}
+.node-icons button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  cursor: pointer;
+}
+.node-icons-delete {
+  color:red;
+  position: absolute;
+  right: 0;
+}
+
+.react-flow__node-frameNode { padding:0; }
+.frame {
+  max-width:160px;
+  max-height:175px;
+  display: inline-block;
+  padding: 3px;
+  border-radius: 2px;
+  position: relative;
+  margin-bottom:2px;
+  z-index:3;
+}
+.frame label {
+  font-size: 10px;
+  margin-bottom: 2px;
+  display: block;
+  position: absolute;
+  top: 5px;
+  z-index: 2;
+  max-height: 20px;
+  overflow-y: clip;
+}
+.frame img {
+  max-width:135px;
+  max-height:135px;
+  position: relative;
+  top: 10px;
+}
+
+.drag-handle__custom {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: teal;
+  margin-left: 15px;
+  border-radius: 50%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+
+.node-edit-form {
+  margin-top: 2rem;
+}
+.form-title {
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
+}
+.node-edit-form .sidebar-form-field {
+  margin-bottom: 0.5rem;
+}
+.node-edit-form .sidebar-form-field input {
+  margin-left: 1rem;
+}
