@@ -23,7 +23,8 @@ when more frames are added.
 ### Example using stills from the movie The Birds (1963)
 [![Storyboard scenes node diagram of movie The Birds](storyboard_thebirds.png)](https://vintillect.com/storyboard/)
 
-## How I created it.
+
+## Commands that helped me started to create it:
 
 React Flow has a helpful [Vite React Flow Template](https://reactflow.dev/learn) to install and get started.
 
@@ -37,6 +38,7 @@ In my opinion, "reducer" is a horrible, misleading name for these kinds of funct
 ```bash
 npm install @reduxjs/toolkit
 ```
+
 
 ## Groups / Sub Flows
 
