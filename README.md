@@ -20,6 +20,9 @@ layout and style. When I tried to connect nodes together with edges, it would co
 wrong node and there was no way to fix it. So, with this project, I just expand the scene list
 when more frames are added.
 
+### Example using stills from the movie The Birds (1963)
+[![Storyboard scenes node diagram of movie The Birds](storyboard_thebirds.png)](https://vintillect.com/storyboard/)
+
 ## How I created it.
 
 React Flow has a helpful [Vite React Flow Template](https://reactflow.dev/learn) to install and get started.

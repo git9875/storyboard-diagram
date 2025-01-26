@@ -10,7 +10,7 @@ const sceneListDefaultWidth = 800;
 const sceneListHeight = 165;
 const sceneListPadding = 15;
 const frameNodeYPos = 30;
-const frameNodeNextXPosDistance = 140;
+const frameNodeNextXPosDistance = 170;
 
 function increaseSceneWidth(sceneList, frameCount) {
   if ((sceneList.style.width - sceneListPadding*2) < (frameCount * frameNodeNextXPosDistance)) {
@@ -203,7 +203,7 @@ export const flow = createSlice({
       state.edges = applyEdgeChanges(action.payload, state.edges);
     },
     onConnect: (state, action) => {
-      const edge = {...action.payload, markerEnd:{type:MarkerType.ArrowClosed}, zIndex:1002 };
+      const edge = {...action.payload, markerEnd:{type:MarkerType.ArrowClosed, height:8, width:8}, style:{strokeWidth:2}, zIndex:1002 };
       state.edges = addEdge(edge, state.edges);
     },
   },
